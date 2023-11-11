@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Email_form input method
+    </title>
+    <link rel="stylesheet" href="form.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <!-- To enter the form from the users -->
+            <form onsubmit="sendEmail(); reset(); return false;">
+                <h3>Get In Touch </h3>
+                <input type="text" id="name" autocomplete="additional-name" placeholder="Enter Your Name" required>
+                <input type="email" id="email" autocomplete="additional-name" placeholder="Enter Your Email" required>
+                <input type="password" id="password" autocomplete="additional-name" placeholder="Enter Your password"
+                    required>
+                <input type="text" id="number" placeholder="Enter Your Number" required>
+                <textarea id="message" rows="4" placeholder="Enter The Message"></textarea>
+                <!-- To make submit button -->
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <!-- To call the api from the smtp -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <!-- small javascript add to receive the message from the users -->
+    <script>
+        function sendEmail() {
+            Email.send({
+                SecureToken: " 90f2effa-b550###########-fb956e927dc2 ",
+
+                To: 'hashmi#########7860@gmail.com',
+                From: document.getElementById("email").value,
+                Subject: "from user contact us only",
+                Body: "Name:" + document.getElementById("name").value
+                    + "<br> Email:" + document.getElementById("email").value
+                    + "<br> Number:" + document.getElementById("number").value
+                    + "<br> Message:" + document.getElementById("message").value
+            }).then(
+                message => alert("you send message succesfuly"),
+                console.log("aman")
+            );
+        }
+        // 
+        // function sendEmail(){
+        //     Email.send({
+        //         Host : "smtp.gmail.com",
+        //         Username : "",
+        //         Password : "",
+        //         To : 'them@website.com',
+        //         From : "you@isp.com",
+        //         Subject : "This is the subject",
+        //         Body : "And this is the body"
+        //     }).then(
+        //     message => alert(message)
+        //     );
+        // }
+    </script>
+</body>
+
+</html>
